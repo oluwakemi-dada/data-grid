@@ -3,98 +3,88 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import type { ReactNode } from 'react';
 
-const invoices = [
-  {
-    invoice: 'INV001',
-    paymentStatus: 'Paid',
-    totalAmount: '$250.00',
-    paymentMethod: 'Credit Card',
-  },
-  {
-    invoice: 'INV002',
-    paymentStatus: 'Pending',
-    totalAmount: '$150.00',
-    paymentMethod: 'PayPal',
-  },
-  {
-    invoice: 'INV003',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$350.00',
-    paymentMethod: 'Bank Transfer',
-  },
-  {
-    invoice: 'INV004',
-    paymentStatus: 'Paid',
-    totalAmount: '$450.00',
-    paymentMethod: 'Credit Card',
-  },
-  {
-    invoice: 'INV005',
-    paymentStatus: 'Paid',
-    totalAmount: '$550.00',
-    paymentMethod: 'PayPal',
-  },
-  {
-    invoice: 'INV006',
-    paymentStatus: 'Pending',
-    totalAmount: '$200.00',
-    paymentMethod: 'Bank Transfer',
-  },
-  {
-    invoice: 'INV007',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$300.00',
-    paymentMethod: 'Credit Card',
-  },
-];
-
-type Invoice = (typeof invoices)[number];
-
-const columns: {
+type BaseColumn = {
+  id: string;
   header: string;
-  accessor: keyof Invoice;
   className?: string;
-}[] = [
-  { header: 'Invoice', accessor: 'invoice', className: 'w-[120px]' },
-  { header: 'Status', accessor: 'paymentStatus', className: '' },
-  { header: 'Method', accessor: 'paymentMethod', className: '' },
-  { header: 'Total Amount', accessor: 'totalAmount', className: 'text-right' },
-];
+};
 
-const TableGrid = () => {
+type AccessorColumn<T> = BaseColumn & {
+  accessor: keyof T;
+  renderCell?: (row: T) => ReactNode;
+};
+
+type RenderColumn<T> = BaseColumn & {
+  renderCell: (row: T) => ReactNode;
+};
+
+export type Column<T> = AccessorColumn<T> | RenderColumn<T>;
+
+type Props<T> = {
+  rows: T[];
+  columns: Column<T>[];
+  children?: ReactNode;
+  caption?: string;
+  getRowId: (row: T) => string;
+};
+
+const DataGrid = <T extends Record<string, unknown>>({
+  rows,
+  columns,
+  children,
+  caption,
+  getRowId,
+}: Props<T>) => {
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+      {caption && <TableCaption>{caption}</TableCaption>}
       <TableHeader>
         <TableRow>
           {columns.map((column) => (
-            <TableHead className={column.className}>{column.header}</TableHead>
+            <TableHead key={column.id} className={column.className}>
+              {column.header}
+            </TableHead>
           ))}
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            {columns.map((column) => (
-              <TableCell>{invoice[column.accessor]}</TableCell>
-            ))}
+        {rows.map((row) => (
+          <TableRow key={getRowId(row)}>
+            {/* {columns.map((column) => (
+              <TableCell key={column.id}>
+                {column.renderCell && 'renderCell' in column
+                  ? column.renderCell(row)
+                  : String(row[column.accessor])}
+              </TableCell>
+            ))} */}
+
+            {columns.map((column) => {
+              if ('accessor' in column) {
+                return (
+                  <TableCell key={column.id}>
+                    {column.renderCell
+                      ? column.renderCell(row)
+                      : String(row[column.accessor])}
+                  </TableCell>
+                );
+              }
+
+              return (
+                <TableCell key={column.id}>{column.renderCell(row)}</TableCell>
+              );
+            })}
           </TableRow>
         ))}
       </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className='text-right'>$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
+      {children}
     </Table>
   );
 };
 
-export default TableGrid;
+export default DataGrid;

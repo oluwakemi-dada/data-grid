@@ -1,9 +1,9 @@
-import DataGrid from '@/features/data-grid/components/data-grid';
+import DataTable from './features/data-grid/components/data-table';
 
 function App() {
   return (
     <>
-      <DataGrid />
+      <DataTable />
     </>
   );
 }
