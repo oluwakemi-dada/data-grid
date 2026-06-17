@@ -1,11 +1,32 @@
-import DataTable from './features/data-grid/components/data-table';
+import DataTable from "./features/data-grid/components/data-table";
 
-function App() {
+const App = ()=> {
   return (
-    <>
-      <DataTable />
-    </>
+    <div className='min-h-screen bg-zinc-950'>
+      {/* Header */}
+      <header className='border-b border-zinc-800 px-8 py-4'>
+        <span className='text-sm font-mono text-zinc-400 tracking-widest uppercase'>
+          Data Grid
+        </span>
+      </header>
+
+      {/* Main */}
+      <main className='px-8 py-10 max-w-7xl mx-auto'>
+        <div className='mb-8'>
+          <h1 className='text-2xl font-semibold text-zinc-100 tracking-tight'>
+            Overview
+          </h1>
+          <p className='text-sm text-zinc-400 mt-1'>
+            Manage and explore your data below.
+          </p>
+        </div>
+
+        <div className='rounded-lg border border-zinc-800 overflow-hidden'>
+          <DataTable />
+        </div>
+      </main>
+    </div>
   );
 }
 
-export default App;
+export default App

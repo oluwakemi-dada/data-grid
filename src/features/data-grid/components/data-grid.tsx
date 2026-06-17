@@ -56,14 +56,6 @@ const DataGrid = <T extends Record<string, unknown>>({
       <TableBody>
         {rows.map((row) => (
           <TableRow key={getRowId(row)}>
-            {/* {columns.map((column) => (
-              <TableCell key={column.id}>
-                {column.renderCell && 'renderCell' in column
-                  ? column.renderCell(row)
-                  : String(row[column.accessor])}
-              </TableCell>
-            ))} */}
-
             {columns.map((column) => {
               if ('accessor' in column) {
                 return (
