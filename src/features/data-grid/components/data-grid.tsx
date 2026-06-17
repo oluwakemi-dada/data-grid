@@ -9,36 +9,27 @@ import {
 } from '@/components/ui/table';
 import type { ReactNode } from 'react';
 
-type BaseColumn = {
+export type Column<T> = {
   id: string;
   header: string;
   className?: string;
-};
-
-type AccessorColumn<T> = BaseColumn & {
   accessor: keyof T;
-  renderCell?: (row: T) => ReactNode;
+  renderCell?: (value: T[keyof T], row: T) => ReactNode;
 };
-
-type RenderColumn<T> = BaseColumn & {
-  renderCell: (row: T) => ReactNode;
-};
-
-export type Column<T> = AccessorColumn<T> | RenderColumn<T>;
 
 type Props<T> = {
   rows: T[];
   columns: Column<T>[];
-  children?: ReactNode;
-  caption?: string;
+  caption?: ReactNode;
+  footer?: ReactNode;
   getRowId: (row: T) => string;
 };
 
 const DataGrid = <T extends Record<string, unknown>>({
   rows,
   columns,
-  children,
   caption,
+  footer,
   getRowId,
 }: Props<T>) => {
   return (
@@ -57,24 +48,20 @@ const DataGrid = <T extends Record<string, unknown>>({
         {rows.map((row) => (
           <TableRow key={getRowId(row)}>
             {columns.map((column) => {
-              if ('accessor' in column) {
-                return (
-                  <TableCell key={column.id}>
-                    {column.renderCell
-                      ? column.renderCell(row)
-                      : String(row[column.accessor])}
-                  </TableCell>
-                );
-              }
+              const value = row[column.accessor];
 
               return (
-                <TableCell key={column.id}>{column.renderCell(row)}</TableCell>
+                <TableCell key={column.id}>
+                  {column.renderCell
+                    ? column.renderCell(value, row)
+                    : String(value)}
+                </TableCell>
               );
             })}
           </TableRow>
         ))}
       </TableBody>
-      {children}
+      {footer && footer}
     </Table>
   );
 };

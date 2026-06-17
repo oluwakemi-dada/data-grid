@@ -59,7 +59,7 @@ export const columns: Column<Invoice>[] = [
     id: 'status',
     header: 'Status',
     accessor: 'paymentStatus',
-    renderCell: (row) => {
+    renderCell: (value, row) => {
       const colors: Record<string, string> = {
         Paid: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
         Pending: 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20',
@@ -69,7 +69,7 @@ export const columns: Column<Invoice>[] = [
         <span
           className={`px-2 py-0.5 rounded text-xs font-medium ${colors[row.paymentStatus] ?? ''}`}
         >
-          {row.paymentStatus}
+          {value}
         </span>
       );
     },
@@ -80,8 +80,8 @@ export const columns: Column<Invoice>[] = [
     header: 'Total Amount',
     accessor: 'totalAmount',
     className: 'text-right',
-    renderCell: (row) => {
-      return <span className='block text-right'>{row.totalAmount}</span>;
+    renderCell: (value, row) => {
+      return <span className='block text-right'>{value}</span>;
     },
   },
 ];

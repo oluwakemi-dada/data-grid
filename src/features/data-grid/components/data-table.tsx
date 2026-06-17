@@ -9,14 +9,15 @@ const DataTable = () => {
       columns={columns}
       caption='A list of your recent invoices.'
       getRowId={(row: Invoice) => row.invoice}
-    >
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className='text-right'>$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
-    </DataGrid>
+      footer={
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={3}>Total</TableCell>
+            <TableCell className='text-right'>$2,500.00</TableCell>
+          </TableRow>
+        </TableFooter>
+      }
+    />
   );
 };
 
