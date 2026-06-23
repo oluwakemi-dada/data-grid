@@ -1,10 +1,10 @@
 import type { Column } from '../data-grid/types';
-import type { invoices } from './invoice-data';
+import { invoices } from './invoice-data';
 
 export type Invoices = typeof invoices;
 export type Invoice = Invoices[number];
 
-export const columns: Column<Invoice>[] = [
+export const invoiceColumns: Column<Invoice>[] = [
   {
     id: 'invoice',
     header: 'Invoice',
@@ -23,7 +23,7 @@ export const columns: Column<Invoice>[] = [
       };
       return (
         <span
-          className={`px-2 py-0.5 rounded text-xs font-medium ${colors[row.paymentStatus] ?? ''}`}
+          className={`px-2 py-0.5 rounded text-xs font-medium ${colors[row.paymentStatus]}`}
         >
           {value}
         </span>
@@ -42,4 +42,4 @@ export const columns: Column<Invoice>[] = [
   },
 ];
 
-export type Columns = typeof columns;
+export type Columns = typeof invoiceColumns;

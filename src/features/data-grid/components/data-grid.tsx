@@ -1,7 +1,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -21,13 +20,11 @@ type Props<T> = {
 const DataGrid = <T extends Record<string, unknown>>({
   rows,
   columns,
-  caption,
   footer,
   getRowId,
 }: Props<T>) => {
   return (
     <Table>
-      {caption && <TableCaption>{caption}</TableCaption>}
       <TableHeader>
         <TableRow>
           {columns.map((column) => (

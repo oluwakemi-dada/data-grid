@@ -1,4 +1,5 @@
 import InvoiceTable from './features/invoices/invoice-table';
+import UserTable from './features/users/user-table';
 
 const App = () => {
   return (
@@ -21,9 +22,25 @@ const App = () => {
           </p>
         </div>
 
-        <div className='rounded-lg border border-zinc-800 overflow-hidden'>
-          <InvoiceTable />
-        </div>
+        {/* Invoices section */}
+        <section className='mb-8'>
+          <div className='flex items-center justify-between mb-3'>
+            <h2 className='text-xl font-medium text-zinc-200'>Invoices</h2>
+          </div>
+          <div className='rounded-lg border border-zinc-800 overflow-hidden'>
+            <InvoiceTable />
+          </div>
+        </section>
+
+        {/* Users section */}
+        <section className='mb-8'>
+          <div className='flex items-center justify-between mb-3'>
+            <h2 className='text-xl font-medium text-zinc-200'>Users</h2>
+          </div>
+          <div className='rounded-lg border border-zinc-800 overflow-hidden'>
+            <UserTable />
+          </div>
+        </section>
       </main>
     </div>
   );
