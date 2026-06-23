@@ -1,8 +1,9 @@
 import { TableCell, TableFooter, TableRow } from '@/components/ui/table';
-import DataGrid from './data-grid';
-import { columns, invoices, type Invoice } from '@/data';
+import DataGrid from '../data-grid/components/data-grid';
+import { invoices } from './invoice-data';
+import { columns, type Invoice } from './invoice-columns';
 
-const DataTable = () => {
+const InvoiceTable = () => {
   return (
     <DataGrid
       rows={invoices}
@@ -21,4 +22,4 @@ const DataTable = () => {
   );
 };
 
-export default DataTable;
+export default InvoiceTable;

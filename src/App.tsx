@@ -1,6 +1,6 @@
-import DataTable from "./features/data-grid/components/data-table";
+import InvoiceTable from './features/invoices/invoice-table';
 
-const App = ()=> {
+const App = () => {
   return (
     <div className='min-h-screen bg-zinc-950'>
       {/* Header */}
@@ -22,11 +22,11 @@ const App = ()=> {
         </div>
 
         <div className='rounded-lg border border-zinc-800 overflow-hidden'>
-          <DataTable />
+          <InvoiceTable />
         </div>
       </main>
     </div>
   );
-}
+};
 
-export default App
+export default App;
