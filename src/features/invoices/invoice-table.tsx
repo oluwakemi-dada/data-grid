@@ -1,7 +1,8 @@
 import { TableCell, TableFooter, TableRow } from '@/components/ui/table';
 import DataGrid from '../data-grid/components/data-grid';
-import { invoices } from './invoice-data';
+
 import { invoiceColumns, type Invoice } from './invoice-columns';
+import { invoices } from './invoice-data';
 
 const InvoiceTable = () => {
   return (

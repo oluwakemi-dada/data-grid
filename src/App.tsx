@@ -1,3 +1,4 @@
+import EmployeeTable from './features/employees/employee-table';
 import InvoiceTable from './features/invoices/invoice-table';
 import UserTable from './features/users/user-table';
 
@@ -23,7 +24,7 @@ const App = () => {
         </div>
 
         {/* Invoices section */}
-        <section className='mb-8'>
+        <section className='mb-12'>
           <div className='flex items-center justify-between mb-3'>
             <h2 className='text-xl font-medium text-zinc-200'>Invoices</h2>
           </div>
@@ -33,12 +34,22 @@ const App = () => {
         </section>
 
         {/* Users section */}
-        <section className='mb-8'>
+        <section className='mb-12'>
           <div className='flex items-center justify-between mb-3'>
             <h2 className='text-xl font-medium text-zinc-200'>Users</h2>
           </div>
           <div className='rounded-lg border border-zinc-800 overflow-hidden'>
             <UserTable />
+          </div>
+        </section>
+
+        {/* Employees section */}
+        <section className='mb-12'>
+          <div className='flex items-center justify-between mb-3'>
+            <h2 className='text-xl font-medium text-zinc-200'>Employees</h2>
+          </div>
+          <div className='rounded-lg border border-zinc-800 overflow-hidden'>
+            <EmployeeTable />
           </div>
         </section>
       </main>
