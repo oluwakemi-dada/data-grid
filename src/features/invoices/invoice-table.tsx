@@ -1,7 +1,6 @@
 import { TableCell, TableFooter, TableRow } from '@/components/ui/table';
 import DataGrid from '../data-grid/components/data-grid';
-
-import { invoiceColumns, type Invoice } from './invoice-columns';
+import { invoiceColumns } from './invoice-columns';
 import { invoices } from './invoice-data';
 
 const InvoiceTable = () => {
@@ -9,7 +8,7 @@ const InvoiceTable = () => {
     <DataGrid
       rows={invoices}
       columns={invoiceColumns}
-      getRowId={(row: Invoice) => row.invoice}
+      getRowId={(row) => row.invoice}
       footer={
         <TableFooter>
           <TableRow>

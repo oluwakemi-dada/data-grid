@@ -1,5 +1,6 @@
 import EmployeeTable from './features/employees/employee-table';
 import InvoiceTable from './features/invoices/invoice-table';
+import ProductTable from './features/products/product-table';
 import UserTable from './features/users/user-table';
 
 const App = () => {
@@ -50,6 +51,16 @@ const App = () => {
           </div>
           <div className='rounded-lg border border-zinc-800 overflow-hidden'>
             <EmployeeTable />
+          </div>
+        </section>
+
+        {/* Products section */}
+        <section className='mb-12'>
+          <div className='flex items-center justify-between mb-3'>
+            <h2 className='text-xl font-medium text-zinc-200'>Employees</h2>
+          </div>
+          <div className='rounded-lg border border-zinc-800 overflow-hidden'>
+            <ProductTable />
           </div>
         </section>
       </main>

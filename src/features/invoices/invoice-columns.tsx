@@ -1,8 +1,5 @@
 import type { Column } from '../data-grid/types';
-import { invoices } from './invoice-data';
-
-export type Invoices = typeof invoices;
-export type Invoice = Invoices[number];
+import type { Invoice } from './invoice-types';
 
 export const invoiceColumns: Column<Invoice>[] = [
   {
@@ -41,5 +38,3 @@ export const invoiceColumns: Column<Invoice>[] = [
     },
   },
 ];
-
-export type Columns = typeof invoiceColumns;

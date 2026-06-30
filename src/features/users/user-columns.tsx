@@ -1,8 +1,5 @@
 import type { Column } from '../data-grid/types';
-import { users } from './user-data';
-
-export type Users = typeof users;
-export type User = Users[number];
+import type { User } from './user-types';
 
 export const userColumns: Column<User>[] = [
   {
@@ -41,5 +38,3 @@ export const userColumns: Column<User>[] = [
     accessor: 'lastLogin',
   },
 ];
-
-export type Columns = typeof userColumns;

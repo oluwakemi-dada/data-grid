@@ -1,8 +1,5 @@
-import { type Column } from '../data-grid/types';
-import type { employees } from './employee-data';
-
-export type Employees = typeof employees;
-export type Employee = Employees[number];
+import type { Column } from '../data-grid/types';
+import type { Employee } from './employee-types';
 
 export const employeeColumns: Column<Employee>[] = [
   { id: 'name', header: 'Name', accessor: 'name' },
