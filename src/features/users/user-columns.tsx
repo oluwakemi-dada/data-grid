@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge';
 import type { Column } from '../data-grid/types';
 import type { User } from './user-types';
 
@@ -24,11 +25,11 @@ export const userColumns: Column<User>[] = [
       };
 
       return (
-        <span
+        <Badge
           className={`px-2 py-0.5 rounded text-xs font-medium ${colors[row.role]}`}
         >
           {value}
-        </span>
+        </Badge>
       );
     },
   },

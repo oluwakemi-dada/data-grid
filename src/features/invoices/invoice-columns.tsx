@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge';
 import type { Column } from '../data-grid/types';
 import type { Invoice } from './invoice-types';
 
@@ -19,11 +20,11 @@ export const invoiceColumns: Column<Invoice>[] = [
         Unpaid: 'bg-red-500/10 text-red-400 border border-red-500/20',
       };
       return (
-        <span
+        <Badge
           className={`px-2 py-0.5 rounded text-xs font-medium ${colors[row.paymentStatus]}`}
         >
           {value}
-        </span>
+        </Badge>
       );
     },
   },
